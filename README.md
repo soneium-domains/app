@@ -1,15 +1,35 @@
 # Soneium Domains
 
-# Quick start
+Soneium Domains is a distributed, open, and extensible naming system built on the Soneium Blockchain and is fully ENS-based.
+Soneium Domains map human-readable names like 'jack.son' to machine-readable identifiers such as Soneium addresses, other cryptocurrency addresses, content hashes, metadata, and more. It also supports reverse resolution, making it possible to associate metadata such as primary names or interface descriptions with Soneium addresses.
 
-Install :
+This repository contains the code for the Soneium Domains Web/Manager App
 
-```bash
-yarn install
-yarn dev
-```
+## :point_down: Getting Started
 
-Navigate to [localhost:3000](http://localhost:3000)
+### Prerequisites
+
+- [Node.js](https://nodejs.org/en/) v18.xx.x
+
+### Run locally
+
+1. Clone repo
+
+   ```sh
+   git clone https://github.com/soneium-domains/soneium-domains-app.git
+   ```
+
+2. Install packages
+   ```sh
+   npm install
+   ```
+3. Run application
+   ```sh
+   npm start
+   ```
+4. Open development server on http://localhost:3000
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 # How to use
 ### TODO

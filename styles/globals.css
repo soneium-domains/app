@@ -1,0 +1,361 @@
+:root {
+  --darkGradient: radial-gradient(
+    at 30% 45%, 
+    #0b0b0b 10%,  /* Very dark gray, close to black */
+    #1a1a1a 35%,  /* Dark gray */
+    #2a2a2a 45%,  /* Medium-dark gray */
+    #202020 55%,  /* Dark gray */
+    #141414 65%,  /* Very dark gray */
+    #191919 80%,  /* Dark gray */
+    #1e1e1e 90%   /* Darker gray */
+  );
+
+  --lightGradient: radial-gradient(
+    at 40% 30%,
+    #e6e6e6 10%,  /* Very light gray */
+    #ededed 35%,  /* Light gray */
+    #dcdcdc 55%,  /* Light-medium gray */
+    #f0f0f0 80%   /* Light gray, close to white */
+  );
+
+  --lightLinearGradient: linear-gradient(
+    to right,
+    #c9c9c9 10%,  /* Light-medium gray */
+    #cecece 45%,  /* Light-medium gray */
+    #e3e3e3 60%,  /* Light gray */
+    #c8c8c8 90%   /* Light-medium gray */
+  );
+
+
+  --vidGradient: linear-gradient(to right, #444444 50%, #888888 100%); /* Dark gray to medium gray */
+
+  --baseGradient: linear-gradient(to bottom, #444444 0%, #888888 100%); /* Dark gray to medium gray */
+
+  --grayGradient: linear-gradient(to bottom, #cfdef3 10%, #e0eafc 90%);
+  --darkGradient0: linear-gradient(to bottom, #232526 10%, #414345 90%);
+  --lightGreyGradient: linear-gradient(to bottom, #8e9eab 10%, #eef2f3 90%);
+  --redGradient: linear-gradient(to bottom, #ed213a 0%, #93291e 100%);
+  --yellowGradient: linear-gradient(to bottom, #fffc00 0%, #fffbc0 100%);
+  --orangeGradient: linear-gradient(to bottom, #f16311 0%, #f5af19 100%);
+  --purpleGradient: linear-gradient(to bottom, #5e1494 0%, #af4bd6 100%);
+  --blueGradient: linear-gradient(to bottom, #b2fefa 0%, #0ed2f7 100%);
+  --dark: #161618;
+
+  --white: #f3f3f3;
+  --light: #f5f5f5;
+  --whiteAlpha: #f3f3f340;
+  --darkAlpha: #16161850;
+  --dark0: #111111;
+  --dark1: rgb(32, 32, 33);
+  --dark2: rgb(50, 52, 54);
+  --gray: #9c9a95;
+  --lightGrey: #d5d5d5;
+  --red1: #c84949;
+  --rbase00: #5cabff;
+  --rbase0: #007bff;
+  --rbase: #00458f;
+  --rbase1: #006ce0;
+  --rbase2: #0063cc;
+  --rbase3: #004fa3;
+
+ --base000: #e0e0e0;  /* Light gray */
+  --base00: #b3b3b3;   /* Medium-light gray */
+  --base0: #8a8a8a;    /* Medium gray */
+  --base1: #707070;    /* Medium-dark gray */
+  --base2: #5a5a5a;    /* Dark gray */
+  --base: #666666;     /* Slightly darker gray */
+  --base3: #4c4c4c;    /* Very dark gray */
+
+  --purple0: #7791df;
+  --purple1: #6343bb;
+  --purple2: #503aa1;
+  --purple: #544ba2;
+  --purple3: #393087;
+  --orange: #e9924b;
+  --yellow: #e9df4b;
+  --red0: #ff7c7a;
+  --red1: #F06E6C;
+  --red: #ca524f;
+  --red2: #af3f3d;
+  --red3: #8d312f;
+  --blue0: #9BADE4;
+  --blue1: #8b9dd4;
+  --blue: #7b90ce;
+  --blue2: #637ac0;
+  --blue3: #405594;
+  --green0: #46f7df;
+  --green1: #38DEC8;
+  --green: #2bceb8;
+  --green2: #13a18e;
+  --green3: #0d8373;
+  --bg1Gradient: url('/bgs/bg1.jpg') center;
+  --bg1: #272727;
+  --bg2Gradient: url('/bgs/bg2.jpg') center;
+  --bg2: #e6e6e6;
+  --bg3Gradient: url('/bgs/bg3.jpg') center;
+  --bg3: #272727;
+  --bg4Gradient: url('/bgs/bg4.svg') center;
+  --bg4: #272727;
+  --bg5Gradient: url('/bgs/bg5.svg') center;
+  --bg5: #272727;
+  --bg6Gradient: url('/bgs/bg6.svg') center;
+  --bg6: #272727;
+  --bg7Gradient: url('/bgs/bg7.svg') center;
+  --bg7: #62a8c1;
+  --bg8Gradient: url('/bgs/bg8.svg') center;
+  --bg8: #007bff;
+  --bg9Gradient: url('/bgs/bg9.svg') center;
+  --bg9: #870000;
+}
+
+*,
+html {
+  scroll-behavior: smooth !important;
+}
+
+body,
+div {
+  scrollbar-color: #19191b #383838 !important;
+  scrollbar-width: thin !important;
+}
+
+.bn-editor * {
+  font-family: "Poppins", sans-serif;
+}
+
+.bn-container[data-block-view] .bn-editor {
+  background: transparent;
+  padding: 0;
+}
+
+
+
+@-webkit-keyframes MainBG {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@-moz-keyframes MainBG {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@keyframes MainBG {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+iframe {
+  border-radius: 16px;
+}
+
+body::-webkit-scrollbar,
+div::-webkit-scrollbar {
+  width: 12px;
+}
+
+body::-webkit-scrollbar-track,
+div::-webkit-scrollbar-track {
+  background-color: #19191b;
+}
+
+body::-webkit-scrollbar-thumb,
+div::-webkit-scrollbar-thumb {
+  background-color: #383838;
+  border-radius: 100px;
+}
+
+.swagger-ui .opblock.opblock-get {
+  background: rgb(213 221 229);
+  border-color: #61affe;
+}
+
+.swagger-ui {
+  color: var(--dark);
+  background-color: var(--white);
+  border-radius: 12px;
+  font-family: 'Montserrat', sans-serif !important /*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */;
+}
+
+.tour,
+.introjs-tooltipReferenceLayer * {
+  color: #161618;
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 500;
+  font-size: large;
+}
+
+/*
+
+Atom One Dark by Daniel Gamage
+Original One Dark Syntax theme from https://github.com/atom/one-dark-syntax
+
+base:    #282c34
+mono-1:  #abb2bf
+mono-2:  #818896
+mono-3:  #5c6370
+hue-1:   #56b6c2
+hue-2:   #61aeee
+hue-3:   #c678dd
+hue-4:   #98c379
+hue-5:   #e06c75
+hue-5-2: #be5046
+hue-6:   #d19a66
+hue-6-2: #e6c07b
+
+*/
+@media only screen and (max-width: 900px) {
+  .hljs {
+    font-size: small;
+    padding: 8px;
+  }
+}
+
+.hljs {
+  display: block;
+  width: 100%;
+  border-radius: 12px;
+  overflow: auto;
+  padding: 0px 24px;
+  color: #abb2bf;
+  background: #282c34;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #5c6370;
+  font-style: italic;
+}
+
+.hljs-doctag,
+.hljs-keyword,
+.hljs-formula {
+  color: #c678dd;
+}
+
+.hljs-section,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-deletion,
+.hljs-subst {
+  color: #e06c75;
+}
+
+.hljs-literal {
+  color: #56b6c2;
+}
+
+.hljs-string,
+.hljs-regexp,
+.hljs-addition,
+.hljs-attribute,
+.hljs-meta-string {
+  color: #98c379;
+}
+
+.hljs-built_in,
+.hljs-class .hljs-title {
+  color: #e6c07b;
+}
+
+.hljs-attr,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-type,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-number {
+  color: #d19a66;
+}
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link,
+.hljs-meta,
+.hljs-selector-id,
+.hljs-title {
+  color: #61aeee;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-link {
+  text-decoration: underline;
+}
+
+.marvel-device .screen {
+  overflow: auto !important;
+}
+
+.marvel-device .screen::-webkit-scrollbar,
+.noscroll::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+.noscroll {
+  scrollbar-width: 'none' !important;
+}
+
+.marvel-device .screen::-webkit-scrollbar-track {
+  background-color: #19191b;
+}
+
+.marvel-device .screen::-webkit-scrollbar-thumb {
+  background-color: #383838;
+  border-radius: 100px;
+}
+
+em-emoji-picker {
+  width: 100%;
+  min-width: 100%;
+  height: 480px;
+  resize: horizontal;
+}
+
+@keyframes animatedgradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.parallax {
+  overflow: hidden;
+  margin: 0;
+  display: flex;
+}
+
+.parallax .scroller {
+  display: flex;
+}
+
+.parallax span {
+  display: flex;
+  margin: 8px;
+}
+
+.nft-swiper {
+  width: 100%;
+  height: 100%;
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}

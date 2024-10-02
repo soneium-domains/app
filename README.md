@@ -21,11 +21,11 @@ This repository contains the code for the Soneium Domains Web/Manager App
 
 2. Install packages
    ```sh
-   npm install
+   yarn install
    ```
 3. Run application
    ```sh
-   npm start
+   yarn dev
    ```
 4. Open development server on http://localhost:3000
 

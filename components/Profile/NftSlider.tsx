@@ -262,7 +262,7 @@ export default function NftSlider({
           backdropFilter="auto"
           backdropBlur={"6px"}
         />
-        <ModalContent bg={bgColor}>
+        <ModalContent bg={bgColor} transition={"all ease 0.3s"}>
           <ModalHeader
             gap={2}
             display={"flex"}

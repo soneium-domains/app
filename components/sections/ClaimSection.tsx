@@ -16,15 +16,10 @@ import {
   useColorModeValue,
   Center,
   Spinner,
-  InputRightAddon,
-  InputRightElement,
   SkeletonCircle,
-  SkeletonText,
   Skeleton,
 } from '@chakra-ui/react';
 import { useEffect, useRef, useState } from 'react';
-import DomainAbi from 'abi/Domain.abi.json';
-import TokenWalletAbi from 'abi/TokenWallet.abi.json';
 import {
   nameAtom,
   primaryNameAtom,

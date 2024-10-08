@@ -1,78 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
 import cheerio from "cheerio";
+import { Game, PSNProfileData, RarestTrophy, Stats, Trophies, Trophy, TrophyMilestone } from "types";
 
-type Trophies = {
-  total: number;
-  platinum: number;
-  gold: number;
-  silver: number;
-  bronze: number;
-};
-
-type Stats = {
-  gamesPlayed: number;
-  completedGames: number;
-  completionRate: string;
-  unearnedTrophies: number;
-  trophiesPerDay: string;
-  views: number;
-  worldRank: string;
-  countryRank: string;
-};
-
-type Trophy = {
-  name: string;
-  description: string;
-  game: string;
-  rarity: string;
-  type: string;
-  imageUrl: string;
-};
-
-type Game = {
-  name: string;
-  platform: string;
-  trophies: {
-    total: number;
-    gold: number;
-    silver: number;
-    bronze: number;
-  };
-  completion: string;
-  rank: string;
-  imageUrl: string;
-};
-
-type RarestTrophy = {
-  name: string;
-  game: string;
-  rarity: string;
-  type: string;
-  imageUrl: string;
-};
-
-type TrophyMilestone = {
-  name: string;
-  game: string;
-  milestone: string;
-  timeAgo: string;
-  imageUrl: string;
-};
-
-type ProfileData = {
-  username: string;
-  avatar: string;
-  level: number;
-  levelProgress: string;
-  comment: string;
-  trophies: Trophies;
-  stats: Stats;
-  recentTrophies: Trophy[];
-  games: Game[];
-  rarestTrophies: RarestTrophy[];
-  trophyMilestones: TrophyMilestone[];
-};
 
 // Helper function to extract trophies
 function extractTrophy(element: any, $: any): Trophy {
@@ -240,7 +170,7 @@ async function scrapePSNProfiles(url: string) {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<ProfileData | { error: string }>
+  res: NextApiResponse<PSNProfileData | { error: string }>
 ) {
   const url = req.query.user as string;
 

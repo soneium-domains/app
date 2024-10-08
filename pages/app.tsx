@@ -5,6 +5,7 @@ import {
   SITE_DESCRIPTION,
   SITE_URL,
   SITE_TITLE,
+  SITE_KEYWORDS,
 } from 'core/utils/constants';
 import { Seo } from 'components/Layout/Seo';
 
@@ -13,6 +14,8 @@ const Home: NextPage = () => {
     <>
       
       <Head>
+        <meta name="description" content={SITE_DESCRIPTION} />
+        <meta name="keywords" content={SITE_KEYWORDS} />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content={SITE_TITLE} />
         <meta name="twitter:description" content={SITE_DESCRIPTION} />

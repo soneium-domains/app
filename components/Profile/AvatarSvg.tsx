@@ -8,7 +8,7 @@ interface Props {
 
 function AvatarSvg({ baseColor = "#EB8D4F", styles }: Props) {
   const colors = generateColorVariations(baseColor);
-  console.log(colors)
+  //console.log(colors)
   const darkColor = colors[0];
   const darkerColor = colors[1];
   const lightColor = colors[2];

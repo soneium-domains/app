@@ -28,8 +28,8 @@ export default function NumberIcon({ text, icon, tip }: Props) {
       borderRadius={4}
       label={<Text p={2}>{tip?.toUpperCase() + " : " + text}</Text>}
       hasArrow
-      color="white"
-      bgColor={"black"}
+      color="black"
+      bgColor={"white"}
     >
       <Flex key={`number-icon-${text}`} gap={2} flexDirection="row" align={'center'} >
         <Box>{icon}</Box>

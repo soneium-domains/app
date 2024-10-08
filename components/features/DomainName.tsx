@@ -7,7 +7,6 @@ import {
     Box,
   } from '@chakra-ui/react';
 import { LinkIcon, Logo } from 'components/logos';
-import TransformingShapes from 'components/ui/TransformingShapes';
   
   interface Props {
     name: string;

@@ -54,6 +54,7 @@ export const socialsAtom = atom(SOCIALS);
 export const socialsArrayAtom = atom<ObjectItem[]>([]);
 export const walletsArrayAtom = atom<ObjectItem[]>([]);
 export const linksArrayAtom = atom<CustomLink[]>([]);
+export const linksAtom = atom<CustomLink[]>([]);
 export const earlyAdopterContractAtom = atom<any>(undefined);
 export const raffleContractAtom = atom<any>(undefined);
 export const nftContractAtom = atom<any>(undefined);

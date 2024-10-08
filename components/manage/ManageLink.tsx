@@ -57,6 +57,7 @@ import ManageNftSlider from "./ManageNftSlider";
 import ManageEmbedLink from "./ManageEmbedLink";
 import ManageBlock from "./ManageBlock";
 import axios from "axios";
+import ManagePSNProfile from "./ManagePSNProfile";
 
 const DragHandle = SortableHandle(() => (
   <span>
@@ -94,26 +95,26 @@ export default function ManageLink({
   const [_title, setTitle] = useState(title);
   const [_url, setURL] = useState(url);
   const [_content, setContent] = useState(content);
-  const [_loadedContent, setLoadedContent] = useState(content?.includes('ipfs://') ? undefined : content);
+  const [_loadedContent, setLoadedContent] = useState(
+    content?.includes("ipfs://") ? undefined : content
+  );
   const [_image, setImage] = useState(image);
   const [_styles, setStyles] = useState(styles);
   const lineIcons = useAtomValue(useLineIconsAtom);
   const reg = AVAILABLE_LINKS.find((e) => e.type === type)?.reg ?? "";
 
   useEffect(() => {
-
-    async function getContent(){
+    async function getContent() {
       const result = await axios.get(IPFS_URLS[0] + content?.slice(7));
-      if(result.status === 200){
+      if (result.status === 200) {
         setLoadedContent(result.data);
         console.log(result.data);
-      };
+      }
     }
 
-    if(content?.includes('ipfs://')){
+    if (content?.includes("ipfs://")) {
       getContent();
     }
-
   }, [content]);
 
   const toast = useToast();
@@ -349,17 +350,27 @@ export default function ManageLink({
                       />
                     )}
 
-                  {isExpanded && _loadedContent && 
-                    type.includes("block") && (
-                      <ManageBlock
-                        title={_title}
-                        type={type}
-                        content={String(_loadedContent)}
-                        setContent={setLoadedContent}
-                        setStyles={setStyles}
-                        styles={_styles ? _styles : {}}
-                      />
-                    )}
+                  {isExpanded && _loadedContent && type.includes("block") && (
+                    <ManageBlock
+                      title={_title}
+                      type={type}
+                      content={String(_loadedContent)}
+                      setContent={setLoadedContent}
+                      setStyles={setStyles}
+                      styles={_styles ? _styles : {}}
+                    />
+                  )}
+
+                  {isExpanded && _loadedContent && type.includes("psn profile") && (
+                    <ManagePSNProfile
+                      title={_title}
+                      type={type}
+                      content={String(_loadedContent)}
+                      setContent={setLoadedContent}
+                      setStyles={setStyles}
+                      styles={_styles ? _styles : {}}
+                    />
+                  )}
 
                   {isExpanded && type.includes("nft gallery") && (
                     <ManageNftGallery
@@ -407,7 +418,14 @@ export default function ManageLink({
                       }
                       onClick={() => {
                         if (new RegExp(reg, "i").test(url)) {
-                          setUrl(ind, _title, _url, _image, type === 'block' ? _loadedContent : _content, _styles);
+                          setUrl(
+                            ind,
+                            _title,
+                            _url,
+                            _image,
+                            type === "block" ? _loadedContent : _content,
+                            _styles
+                          );
                         } else {
                           toast({
                             status: "warning",

@@ -155,8 +155,15 @@ const LinkIcon = ({
       ) : (
         <FaRankingStar size={size} color={color ? color : undefined} />
       );
+    case "world rank":
+      return line ? (
+        <Icons.RiEarthLine size={size} color={color ? color : undefined} />
+      ) : (
+        <Icons.RiEarthFill size={size} color={color ? color : undefined} />
+      );
     case "ps":
     case "psn":
+    case "psn profile":
     case "playstation":
       return line ? (
         <Icons.RiPlaystationLine
@@ -174,6 +181,13 @@ const LinkIcon = ({
         <RiLinkedinLine size={size} color={color ? color : undefined} />
       ) : (
         <RiLinkedinFill size={size} color={color ? color : undefined} />
+      );
+    case "trophy":
+    case "trophies":
+      return line ? (
+        <Icons.RiTrophyLine size={size} color={color ? color : undefined} />
+      ) : (
+        <Icons.RiTrophyFill size={size} color={color ? color : undefined} />
       );
     case "reddit":
       return line ? (
@@ -520,8 +534,8 @@ const LinkIcon = ({
       ) : (
         <RiFileGifFill size={size} color={color ? color : undefined} />
       );
-      case "linktree":
-        return <Linktree color={color ? color : undefined} size={size} />;
+    case "linktree":
+      return <Linktree color={color ? color : undefined} size={size} />;
     default:
       //// console.log('here : ', type);
       if (type.indexOf("Ri") === 0) {
@@ -534,12 +548,12 @@ const LinkIcon = ({
         return (
           <Avatar
             src={type}
-            w={size === 'sm' ? '32px' : size === 'lg' ? '56px' : '44px'}
-            h={size === 'sm' ? '32px' : size === 'lg' ? '56px' : '44px'}
+            w={size === "sm" ? "32px" : size === "lg" ? "56px" : "44px"}
+            h={size === "sm" ? "32px" : size === "lg" ? "56px" : "44px"}
             borderRadius={rounded ? rounded : "8px"}
             color="white"
-            maxW={'80px'}
-            maxH={'80px'}
+            maxW={"80px"}
+            maxH={"80px"}
             bg={"transparent"}
             icon={<NftLine color={color ? color : undefined} />}
           />

@@ -13,7 +13,6 @@ import {
   ModalBody,
   ModalCloseButton,
   useDisclosure,
-  useColorModeValue,
   Link,
   useToast,
   Center,
@@ -21,9 +20,8 @@ import {
   Switch,
   Box,
   SimpleGrid,
-  Avatar,
+  Image,
 } from "@chakra-ui/react";
-import DomainAbi from "abi/Domain.abi.json";
 import { LinkIcon, Logo } from "components/logos";
 import {
   avatarAtom,
@@ -35,9 +33,6 @@ import {
   pathAtom,
   primaryNameAtom,
   secretAtom,
-  signDateAtom,
-  signHashAtom,
-  signMessageAtom,
   socialsArrayAtom,
   subtitleAtom,
   titleAtom,
@@ -46,21 +41,14 @@ import {
 import {
   AVATAR_API_URL,
   AVATAR_PREVIEW_URL,
-  DOMAIN_REGISTER_FEE,
   ETHERSCAN_ADDRESS,
-  METADATA_URL,
-  OPENSEA_URL,
-  SIGN_MESSAGE,
   SITE_MANAGE_SINGLE_URL,
-  SITE_MANAGE_URL,
   SITE_PROFILE_URL,
   TLD,
 } from "core/utils/constants";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import React, { useEffect, useState } from "react";
-import { Message } from "types";
 import { useTranslate } from "core/lib/hooks/use-translate";
-import { getCurrentDateUnix, isValidSignHash, sumUint128 } from "core/utils";
 import {
   ETHRegistrarController,
   PriceOracle,
@@ -69,9 +57,6 @@ import {
 import {
   estimateGasCost,
   prepareContractCall,
-  prepareTransaction,
-  readContract,
-  stringToBytes,
   toWei,
 } from "thirdweb";
 import {
@@ -91,11 +76,9 @@ import CropAvatar from "components/manage/CropAvatar";
 import AddModal from "components/manage/AddModal";
 import TextIcon from "components/features/TextIcon";
 import { TransactionButton, useActiveAccount } from "thirdweb/react";
-import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { getRandomBytes32 } from "core/utils/stringUtils";
 import { BigNumber } from "ethers";
 import { generateRecordCallArray, namehash } from "@soneium-domains/js/utils";
-import ImageBox from "./ImageBox";
 import Lottie from "react-lottie";
 import * as animationData from "assets/animations/congrats.json";
 import LoadingIcon from "components/ui/LoadingIcon";
@@ -706,10 +689,11 @@ export default function RegisterModal() {
                         <Text fontSize={"xl"} fontWeight={"bold"}>
                           Name Registered!
                         </Text>
-                        <ImageBox
-                          size={["100%", "xs"]}
-                          srcUrl={avatar ? `${AVATAR_API_URL}${name}.son` : `${AVATAR_PREVIEW_URL}${name}.son`}
+                        <Image
+                          w={["100%", "xs"]}
+                          src={avatar ? `${AVATAR_API_URL}${name}.son` : `${AVATAR_PREVIEW_URL}${name}.son`}
                           rounded={"xl"}
+                          alt={name+'-son-avatar-image'}
                         />
                         <Text fontSize={"xl"} fontWeight={"bold"}>
                           {name}.son

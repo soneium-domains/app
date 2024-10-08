@@ -11,9 +11,9 @@ export const SITE_URL = "https://soneium.domains/";
 export const SITE_LOGO_URL = "https://soneium.domains/logo.svg";
 export const SITE_OGS_URL = "https://soneium.domains/ogs/";
 export const SITE_URL_SHORT = "soneium.domains";
-export const VID_IMAGE_API = "https://img.soneium.domains/api/";
 export const SITE_TITLE = "Soneium Domains";
-export const SITE_DESCRIPTION = "Soneium Naming Service for Soneium Blockchain";
+export const SITE_DESCRIPTION = "Decentralized Naming Service for the Soneium Blockchain";
+export const SITE_KEYWORDS = "Soneium Domains, Blockchain Domains, Decentralized Naming Service, Soneium Naming Service";
 export const SITE_FULL_DESCRIPTION =
   "Soneium Domains is a ENS-Based domain naming system for Soneium Blockchain which provides users and dapps the ability to assign human-readable names to Soneium addresses";
 export const NFT_IMAGE_URL =
@@ -41,10 +41,10 @@ export const TWITTER_RETWEET_URL = "";
 export const ZEALY_USERS_API = "";
 export const IPFS_IO_URL = "https://ipfs.io/ipfs/";
 
-export const SOCIAL_TWITTER = "Soneiumdomains";
-export const TWITTER_URL = "https://twitter.com/";
+export const SOCIAL_TWITTER = "Soneium_domains";
+export const TWITTER_URL = "https://x.com/";
 export const DISCORD_URL = "https://discord.gg/eRD8PBVFaB";
-export const GITHUB_URL = "https://github.com/Soneiumdomains";
+export const GITHUB_URL = "https://github.com/soneium-domains";
 export const TELEGRAM_URL = "https://t.me/Soneiumdomains";
 export const DOCS_URL = "https://docs.soneium.domains";
 export const ROADMAP_URL = "https://docs.soneium.domains/overview/roadmap";
@@ -134,6 +134,7 @@ export const AVAILABLE_LINKS: LinkType[] = [
   { type: "block", av: true, reg: "" },
   { type: "nft link", av: true, reg: "" },
   { type: "simple link", av: true, reg: LINK_VALIDATION_REGEX },
+  { type: "psn profile", av: true, reg: "" },
   { type: "image link", av: true, reg: LINK_VALIDATION_REGEX },
   { type: "tweet", av: true, reg: TWITTER_STATUS_REGEX },
   { type: "ipfs image", av: true, reg: "" },
@@ -144,10 +145,7 @@ export const AVAILABLE_LINKS: LinkType[] = [
   { type: "payment button", av: true, reg: "" },
   { type: "nft gallery", av: true, reg: "" },
   { type: "nft slider", av: true, reg: "" },
-  { type: "embed", av: true, reg: "" },
-  { type: "token link", av: false, reg: "" },
-  { type: "contact form", av: false, reg: "" },
-  { type: "contact info", av: false, reg: "" },
+  { type: "embed", av: true, reg: "" }
 ];
 
 export const EXAMPLE_SOCIAL_URLS: any = {

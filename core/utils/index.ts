@@ -1,6 +1,7 @@
 import axios from "axios";
 import { truncAddress } from "./stringUtils";
 import { IPFS_URLS, MAX_NAME_LENGTH, MIN_NAME_LENGTH, SOCIAL_URLS } from "./constants";
+import { CustomLink, Game } from "types";
 //import crypto from 'crypto';
 
 const sleep = async (ms: number) => new Promise((r) => setTimeout(r, ms));
@@ -690,8 +691,52 @@ function getColorSchemeName(color: string): string {
   return closestColor;
 }
 
+const sortCustomLinksByOrder = (links: CustomLink[]): CustomLink[] => {
+  return links.sort((a, b) => {
+    const orderA = a.styles?.order ?? 0; // If order is undefined, default to 0
+    const orderB = b.styles?.order ?? 0;
+    return orderA - orderB;
+  });
+};
+
+const setOrderInCustomLinks = (links: CustomLink[]): CustomLink[] => {
+  
+  return sortCustomLinksByOrder(links).map((link, index) => ({
+    ...link,
+    styles: {
+      ...(link.styles || {}),  // Ensure styles is defined
+      order: index,            // Set the order based on the index
+    },
+  }));
+};
+
+function sortGames(games: Game[], criterion: 'completion' | 'rank' | 'trophiesTotal'): Game[] {
+  const rankOrder: { [key: string]: number } = {
+    'A': 1,
+    'B': 2,
+    'C': 3,
+    'D': 4,
+    'F': 5,
+  };
+
+  return games.sort((a, b) => {
+    switch (criterion) {
+      case 'completion':
+        return parseFloat(a.completion) - parseFloat(b.completion); // Assuming completion is a percentage in string form like '85.4%'
+      case 'rank':
+        return rankOrder[a.rank] - rankOrder[b.rank]; // Sorting based on custom rank order
+      case 'trophiesTotal':
+        return b.trophies.total - a.trophies.total; // Sort by trophies total in descending order
+      default:
+        return 0;
+    }
+  });
+}
+
 
 export {
+  sortGames,
+  setOrderInCustomLinks,
   getColorSchemeName,
   detectCoinChanges,
   detectTextChanges,

@@ -11,6 +11,7 @@ import {
   Popover,
   PopoverTrigger,
   PopoverContent,
+  Image,
 } from '@chakra-ui/react';
 import {
   titleAtom,
@@ -37,7 +38,6 @@ import { Steps, Hints } from 'intro.js-react';
 import { EARLY_ADOPTER_IMAGES, TOUR_STEPS } from 'core/utils/constants';
 import { RiCheckboxCircleFill, RiQuestionFill } from 'react-icons/ri';
 import { useTranslate } from 'core/lib/hooks/use-translate';
-import ImageBox from 'components/claiming/ImageBox';
 
 export default function ProfileCompletion() {
   const { t } = useTranslate();
@@ -332,9 +332,9 @@ export default function ProfileCompletion() {
                 </Text>
               </Flex>
               <Flex flexDir={'column'} justify={'center'} gap={4} align={'center'} p={4}>
-                  <ImageBox
-                    srcUrl={EARLY_ADOPTER_IMAGES['geek'].src}
-                    size={250}
+                  <Image
+                    src={EARLY_ADOPTER_IMAGES['geek'].src}
+                    w={250}
                   />
                   <Text>
                   Soneium Domains GEEK OAT

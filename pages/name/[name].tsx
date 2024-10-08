@@ -68,6 +68,7 @@ import {
   targetAtom,
   showDomainAtom,
   horizontalAvatarAtom,
+  linksAtom,
 } from "core/atoms";
 import {
   SITE_DESCRIPTION,
@@ -123,7 +124,8 @@ const ManagePage: NextPage = () => {
   const isConnected = useAtomValue(isConnectedAtom);
   const network = useAtomValue(networkAtom);
   const connectedAccount = useAtomValue(connectedAccountAtom);
-  const links = useAtomValue(linksArrayAtom);
+  const linksArray = useAtomValue(linksArrayAtom);
+  const links = useAtomValue(linksAtom);
   const socials = useAtomValue(socialsArrayAtom);
   const wallets = useAtomValue(walletsArrayAtom);
   const [lineIcons, setLineIcons] = useAtom(useLineIconsAtom);
@@ -773,7 +775,7 @@ const ManagePage: NextPage = () => {
                         <DeviceFrameset
                           device={"iPhone 5s"}
                           color={colorMode === "dark" ? "black" : "silver"}
-                          width={mobileView ? 400 : 540}
+                          width={mobileView ? 410 : 540}
                           // @ts-ignore: Unreachable code error
                           height={"84vh"}
                         >

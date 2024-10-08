@@ -85,7 +85,7 @@ export default function AddModal({ type = 'square' }: { type: 'square' | 'full' 
             </Stack>
           </ModalBody>
           <ModalFooter justifyContent={'center'} fontSize={'xs'} >
-          <ImportModal />
+          {/* <ImportModal /> */}
           </ModalFooter>
         </ModalContent>
       </Modal>

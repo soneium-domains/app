@@ -62,7 +62,7 @@ export function Seo({title = SITE_TITLE,description = SITE_DESCRIPTION}: Props) 
         {
           rel: 'manifest',
           href: '/manifest.json',
-        },
+        }
       ]}
     />
   );

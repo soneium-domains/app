@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import { useAtom, useAtomValue } from "jotai";
 import { LinkIcon } from "components/logos";
 import { linksArrayAtom } from "core/atoms";
-import { capFirstLetter } from "core/utils";
+import { capFirstLetter, setOrderInCustomLinks } from "core/utils";
 import { CustomLink } from "types";
 import { IPFS_IMAGE_URI } from "core/utils/constants";
 import AnimateOpacity from "components/animate/AnimateOpacity";
@@ -34,9 +34,10 @@ export default function Links({ json, color }: Props) {
     }
 
     if (_links.length > 0) {
-      setLinksArray(_links);
+      setLinksArray(setOrderInCustomLinks(_links));
     }
   }, []);
+  
 
   return (
     <>

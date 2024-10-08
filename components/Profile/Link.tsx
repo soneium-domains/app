@@ -42,6 +42,7 @@ import SimpleLink from "./SimpleLink";
 //import { motion, Variants } from 'framer-motion';
 import dynamic from "next/dynamic";
 import axios from "axios";
+import PSNProfile from "./PSNProfile";
 
 const Block = dynamic(() => import("./Block"), { ssr: false });
 
@@ -75,7 +76,9 @@ export default function Link({
   const variant = useAtomValue(variantAtom);
   const buttonBg = useAtomValue(buttonBgColorAtom);
   const [isLoading, setIsLoading] = useState(true);
-  const [loadedContent,setLoadedContent] = useState(content?.includes('ipfs://') ? undefined : content);
+  const [loadedContent, setLoadedContent] = useState(
+    content?.includes("ipfs://") ? undefined : content
+  );
   //console.log(type, title);
 
   // const cardVariants = (i:number) => {
@@ -98,19 +101,17 @@ export default function Link({
   // };
 
   useEffect(() => {
-
-    async function getContent(){
+    async function getContent() {
       const result = await axios.get(IPFS_URLS[0] + content?.slice(7));
-      if(result.status === 200){
+      if (result.status === 200) {
         setLoadedContent(result.data);
         console.log(result.data);
-      };
+      }
     }
 
-    if(content?.includes('ipfs://')){
+    if (content?.includes("ipfs://")) {
       getContent();
     }
-
   }, [content]);
 
   return (
@@ -240,6 +241,10 @@ export default function Link({
 
       {type === "block" && loadedContent && (
         <Block title={title} content={String(loadedContent)} style={styles} />
+      )}
+
+      {type === "psn profile" && loadedContent && (
+        <PSNProfile title={title} content={String(loadedContent)} styles={styles} />
       )}
 
       {type === "payment button" && (

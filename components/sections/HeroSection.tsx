@@ -89,7 +89,7 @@ export default function HeroSection() {
                   fontSize={["lg", "2xl"]}
                   textAlign={"center"}
                 >
-                  Turn your Soneium address into something epic! With Soneium Domains, it's all about you—personalize your Web3 profile, showcase your NFTs, and drop links that matter.
+                  Turn your Soneium address into something epic!
                 </Text>
               </AnimateOnScroll>
             </Center>

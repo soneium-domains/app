@@ -51,11 +51,12 @@ import {
   btcAtom,
   ethAtom,
   linksArrayAtom,
+  linksAtom,
   openAddAtom,
   openAddLinkAtom,
   useLineIconsAtom,
 } from "core/atoms";
-import { capFirstLetter } from "core/utils";
+import { capFirstLetter, setOrderInCustomLinks } from "core/utils";
 import { useStorageUpload } from "@thirdweb-dev/react";
 import { LinkIcon } from "components/logos";
 import { ImageLink, Link } from "components/Profile";
@@ -79,6 +80,7 @@ import ManageEmbedLink from "./ManageEmbedLink";
 import ManageBlock from "./ManageBlock";
 import useUploadJsonFile from "core/lib/hooks/use-upload";
 import { client } from "components/walletConnect";
+import ManagePSNProfile from "./ManagePSNProfile";
 
 export default function AddLinkButton() {
   const useLineIcons = useAtomValue(useLineIconsAtom);
@@ -92,6 +94,7 @@ export default function AddLinkButton() {
   const ethAddress = useAtomValue(ethAtom);
   const btcAddress = useAtomValue(btcAtom);
   const { colorMode } = useColorMode();
+  const [links, setLinks] = useAtom(linksAtom);
   const [linksArray, setLinksArray] = useAtom(linksArrayAtom);
   const [notMobile] = useMediaQuery("(min-width: 800px)");
   const [type, setType] = useState("");
@@ -104,7 +107,9 @@ export default function AddLinkButton() {
   const [styles, setStyles] = useState<Styles>({});
   const reg = AVAILABLE_LINKS.find((e) => e.type === type)?.reg ?? "";
   const toast = useToast();
-  const { isLoading, data, hasError, uploadJsonFile } = useUploadJsonFile({client: client});
+  const { isLoading, data, hasError, uploadJsonFile } = useUploadJsonFile({
+    client: client,
+  });
 
   useEffect(() => {
     if (_open) {
@@ -122,28 +127,32 @@ export default function AddLinkButton() {
 
   const addToLinks = async () => {
     let __content = content;
-    if(content.length > 300){
+    if (content.length > 300) {
       toast({
-        title: 'Uploading to IPFS',
-        description:'Uploading link content to IPFS to reduce gas costs',
-        status: 'loading',
+        title: "Uploading to IPFS",
+        description: "Uploading link content to IPFS to reduce gas costs",
+        status: "loading",
         duration: null,
-        isClosable : false
-      })
-      __content = await uploadJsonFile(JSON.stringify(content),title.replaceAll(' ','-'));
-      if(hasError){
+        isClosable: false,
+      });
+      __content = await uploadJsonFile(
+        JSON.stringify(content),
+        title.replaceAll(" ", "-")
+      );
+      if (hasError) {
         toast.closeAll();
         toast({
-          title: 'Error on Uploading to IPFS',
-          description:'Can not upload to IPFS, please check your network. If the problem presists, please contact support at info@soneium.domains',
-          status: 'warning',
-          isClosable : true
-        })
+          title: "Error on Uploading to IPFS",
+          description:
+            "Can not upload to IPFS, please check your network. If the problem presists, please contact support at info@soneium.domains",
+          status: "warning",
+          isClosable: true,
+        });
         return;
       } else {
         toast.closeAll();
       }
-      console.log("Link too bug",__content);
+      console.log("Link too bug", __content);
     }
     let _newLinksArray = [
       {
@@ -151,15 +160,16 @@ export default function AddLinkButton() {
         title,
         url,
         image,
-        content : __content,
+        content: __content,
         styles,
       },
       ...linksArray,
     ];
 
     console.log(_newLinksArray);
-
-    setLinksArray(_newLinksArray);
+    const _links = setOrderInCustomLinks(_newLinksArray);
+    setLinksArray(_links);
+    setLinks(_links);
     //// console.log(_newLinksArray);
     setType("");
     setTitle("");
@@ -498,6 +508,18 @@ export default function AddLinkButton() {
                   <ManageBlock
                     title={title}
                     type={type}
+                    content={String(content)}
+                    setContent={setContent}
+                    setStyles={setStyles}
+                    styles={styles ? styles : {}}
+                  />
+                )}
+
+                {type.includes("psn profile") && (
+                  <ManagePSNProfile
+                    title={title}
+                    type={type}
+                    preview
                     content={String(content)}
                     setContent={setContent}
                     setStyles={setStyles}

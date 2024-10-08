@@ -43,6 +43,7 @@ export interface Styles {
   nav?: boolean;
   navColor?: string;
   network?: string;
+  order?: number;
   type?: string;
   mode?: string;
   note?: string;
@@ -97,3 +98,75 @@ export interface SortableItemProps {
   children: ReactNode;
   index: number;
 }
+
+export type Trophies = {
+  total: number;
+  platinum: number;
+  gold: number;
+  silver: number;
+  bronze: number;
+};
+
+export type Stats = {
+  gamesPlayed: number;
+  completedGames: number;
+  completionRate: string;
+  unearnedTrophies: number;
+  trophiesPerDay: string;
+  views: number;
+  worldRank: string;
+  countryRank: string;
+};
+
+export type Trophy = {
+  name: string;
+  description: string;
+  game: string;
+  rarity: string;
+  type: string;
+  imageUrl: string;
+};
+
+export type Game = {
+  name: string;
+  platform: string;
+  trophies: {
+    total: number;
+    gold: number;
+    silver: number;
+    bronze: number;
+  };
+  completion: string;
+  rank: string;
+  imageUrl: string;
+};
+
+export type RarestTrophy = {
+  name: string;
+  game: string;
+  rarity: string;
+  type: string;
+  imageUrl: string;
+};
+
+export type TrophyMilestone = {
+  name: string;
+  game: string;
+  milestone: string;
+  timeAgo: string;
+  imageUrl: string;
+};
+
+export type PSNProfileData = {
+  username: string;
+  avatar: string;
+  level: number;
+  levelProgress: string;
+  comment: string;
+  trophies: Trophies;
+  stats: Stats;
+  recentTrophies: Trophy[];
+  games: Game[];
+  rarestTrophies: RarestTrophy[];
+  trophyMilestones: TrophyMilestone[];
+};

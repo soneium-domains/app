@@ -9,6 +9,7 @@ interface FloatingObjectsProps {
     triangle?: string;
     x?: string;
   };
+  lineWidth?: number;
   styles?: any;
 }
 
@@ -23,6 +24,7 @@ interface Shape {
 const FloatingObjects: React.FC<FloatingObjectsProps> = ({
   objectCount = 10,
   objectSize = 50,
+  lineWidth = 2,
   shapeColors = {
     square: "#77777777",
     circle: "#77777777",
@@ -62,7 +64,7 @@ const FloatingObjects: React.FC<FloatingObjectsProps> = ({
 
       shapes.forEach((shape) => {
         ctx.beginPath();
-        ctx.lineWidth = 2;
+        ctx.lineWidth = lineWidth;
 
         // Set stroke color based on shape type
         switch (shape.type) {

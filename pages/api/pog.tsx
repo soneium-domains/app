@@ -13,7 +13,7 @@ const OgImageHandler = async (req: NextRequest) => {
   const title = searchParams.get('title') || 'Soneium Domains';
   const subtitle = searchParams.get('subtitle') || 'Soneium Domains';
   const avatar = searchParams.get('avatar');
-  const bg = searchParams.get('bg');
+  const bg = searchParams.get('bg');  
   const lightMode = searchParams.get('lightmode') || false;
 
   const fontDataBold = await fetch(

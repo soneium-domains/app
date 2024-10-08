@@ -6,7 +6,7 @@ import { Seo } from 'components/Layout/Seo';
 
 const Manage: NextPage = () => {
   const title = "My Names";
-  const des = "Soneium Domains Management Panel";
+  const des = "Manage Soneium Domains";
   return (
     <>
     <Seo title={title} description={des} />

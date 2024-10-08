@@ -16,7 +16,6 @@ import {
 } from "core/atoms";
 import { useAtom, useSetAtom } from "jotai";
 import { motion } from "framer-motion";
-import TextCard from "components/claiming/TextCard";
 import { LinkIcon, Logo, LogoIcon } from "components/logos";
 import DomainName from "components/features/DomainName";
 import AccountAddress from "components/features/AccountAddress";
@@ -48,7 +47,7 @@ export default function IntroSection() {
                   fontSize={["4xl", "4xl", "5xl", "5xl", "6xl"]}
                   textAlign={["center", "center", "center"]}
                 >
-                  {t("Own Your Web3 Identity")}
+                  {t("Web3 Naming Service")}
                 </Heading>
               </AnimateOnScroll>
             </Stack>

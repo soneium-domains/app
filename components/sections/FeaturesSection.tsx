@@ -16,7 +16,7 @@ import { Avatar, Link, Links, Socials } from "components/Profile";
 import NextLink from "next/link";
 import { openModalAtom } from "core/atoms";
 import { useAtom, useSetAtom } from "jotai";
-import { DOCS_URL, SOCIALS, TWITTER_FOLLOW_URL } from "core/utils/constants";
+import { BG_COLORS_SAMPLE, DOCS_URL, SOCIALS, TWITTER_FOLLOW_URL } from "core/utils/constants";
 import { LinkIcon, Logo, LogoIcon } from "components/logos";
 import AnimateOnScroll from "components/animate/AnimateOnScroll";
 import { LinksSlider } from "components/ui/LinksSlider";
@@ -72,7 +72,7 @@ export default function FeaturesSection() {
                 Build Your Personalized Space
               </Text>
             </AnimateOnScroll>
-            
+
             <AnimateOnScroll delay={0.5}>
               <Text
                 textAlign={"center"}
@@ -86,9 +86,14 @@ export default function FeaturesSection() {
             </AnimateOnScroll>
             <AnimateOnScroll delay={0.8}>
               <Center flexDirection={["column", "column", "row"]} gap={6}>
-                <Button size={"lg"} colorScheme="light" w={["100%", "xs"]} as={NextLink}
+                <Button
+                  size={"lg"}
+                  colorScheme="light"
+                  w={["100%", "xs"]}
+                  as={NextLink}
                   passHref
-                  href={DOCS_URL}>
+                  href={DOCS_URL}
+                >
                   {t("Developer Docs")}
                 </Button>
                 <Button
@@ -197,7 +202,42 @@ export default function FeaturesSection() {
                     y={notMobile ? 0 : 50}
                     styles={{ width: "100%", overflow: "visible" }}
                   >
-                    <PSNProfile title="sam_shariat" />
+                    <PSNProfile
+                      styles={{ bg: 'linear-gradient(0deg, #b9b9b9 10%, #eef2f3 90%)' , size: 'lg'}}
+                      title="PSN User"
+                      content={JSON.stringify({
+                        username: "PSN Username",
+                        level: "22",
+                        levelProgress: "75",
+                        trophies: {
+                          total: 52,
+                          platinum: 0,
+                          gold: 5,
+                          silver: 10,
+                          bronze: 37,
+                        },
+                        stats: {
+                          gamesPlayed: 13,
+                          completedGames: 0,
+                          completionRate: "18.01%",
+                          unearnedTrophies: 279,
+                          trophiesPerDay: "0.02",
+                          views: 20,
+                          worldRank: "4,227,357",
+                          countryRank: "1,369,417",
+                        },
+                        trophyMilestones: [
+                          {
+                            name: "Tinkerer",
+                            game: "Rocket League",
+                            milestone: "First Trophy",
+                            timeAgo: "7 years ago",
+                            imageUrl:
+                              "https://i.psnprofiles.com/games/13f789/trophies/33S4347c5.png",
+                          },
+                        ],
+                      })}
+                    />
                   </AnimateOnScroll>
                 </Flex>
               </Center>
@@ -314,7 +354,10 @@ export default function FeaturesSection() {
               h={"100vh"}
             >
               <Center rounded={"2xl"} p={[4, 4, 12]}>
-                <Flex w={["400px", "420px", "lg", "xl", "2xl"]} position={"relative"}>
+                <Flex
+                  w={["400px", "420px", "lg", "xl", "2xl"]}
+                  position={"relative"}
+                >
                   <AnimateOnScroll
                     delay={0.3}
                     x={-200}
@@ -325,7 +368,21 @@ export default function FeaturesSection() {
                       type="nft slider"
                       title=""
                       url=""
-                      styles={{effect:'cards', mode:'slider',color:'#ffffff77',nav: true, navColor: '#ffffff',size: notMobile ? "md" : "sm", position:'fill', type: 'collection', eth: "0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb", slides: 2, centered: true, auto: true, network: 'ethereum' }}
+                      styles={{
+                        effect: "cards",
+                        mode: "slider",
+                        color: "#ffffff77",
+                        nav: true,
+                        navColor: "#ffffff",
+                        size: notMobile ? "md" : "sm",
+                        position: "fill",
+                        type: "collection",
+                        eth: "0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb",
+                        slides: 2,
+                        centered: true,
+                        auto: true,
+                        network: "ethereum",
+                      }}
                       color={"dark"}
                     />
                   </AnimateOnScroll>

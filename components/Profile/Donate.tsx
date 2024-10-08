@@ -71,24 +71,6 @@ export default function Donate({ title, content, style, icon, type }: Props) {
 
   useEffect(() => {
     _setOpen(isOpen);
-    // async function check() {
-    //   const coment = (await provider?.packIntoCell({
-    //     structure: [
-    //         { name: "op", type: "uint32" }, // operation
-    //         { name: "comment", type: "bytes" }
-    //     ] as const,
-    //     data: {
-    //         "op": 0,
-    //         "comment": Buffer.from("Donation received").toString("hex"),
-    //     },
-    //     abiVersion : '2.3'
-    //   }))?.boc;
-    //   setComment(coment);
-    // }
-
-    // if(isOpen && !comment){
-    //   check();
-    // }
   }, [isOpen]);
 
   const [value, setValue] = useState("0.001");
@@ -101,21 +83,6 @@ export default function Donate({ title, content, style, icon, type }: Props) {
     value.indexOf(" ")
   )}&label=donation`;
 
-  const donate = async () => {
-    if (value.includes("ETH")) {
-      //
-      try {
-        setIsDonating(true);
-        setDonateSuccessful(false);
-      } catch (e) {
-        setDonateSuccessful(false);
-        setIsDonating(false);
-      }
-      //} else {
-
-      //}
-    }
-  };
 
   return (
     <>
@@ -162,7 +129,7 @@ export default function Donate({ title, content, style, icon, type }: Props) {
                 {eth && (
                   <TabPanel>
                     <Stack gap={4}>
-                      <Stack gap={2}>
+                      <Stack gap={4}>
                         <Text>Select an amount</Text>
                         {DONATE_VALUES["ethereum"].map((val: string) => (
                           <Button

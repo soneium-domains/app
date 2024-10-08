@@ -12,15 +12,15 @@ import {
   useColorMode,
   useToast,
 } from '@chakra-ui/react';
-import React, { useEffect, ReactNode } from 'react';
+import React, { useEffect, ReactNode, useState } from 'react';
 import { useAtom, useAtomValue } from 'jotai';
-import { linksArrayAtom, useLineIconsAtom } from 'core/atoms';
+import { linksArrayAtom, linksAtom, useLineIconsAtom } from 'core/atoms';
 import { LinkIcon } from 'components/logos';
 import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 import { arrayMoveImmutable } from 'array-move';
 import AddLinkButton from './AddLinkButton';
 import ManageLink from './ManageLink';
-import { capFirstLetter, arrayRemove } from 'core/utils';
+import { capFirstLetter, arrayRemove, setOrderInCustomLinks } from 'core/utils';
 import { CustomLink, SortableItemProps, SortableConProps, Styles } from 'types';
 import { IPFS_IMAGE_URI } from 'core/utils/constants';
 import useUploadJsonFile from 'core/lib/hooks/use-upload';
@@ -33,6 +33,7 @@ interface Props {
 export default function ManageLinks({ json }: Props) {
   const useLineIcons = useAtomValue(useLineIconsAtom);
   const [linksArray, setLinksArray] = useAtom(linksArrayAtom);
+  const [links, setLinks] = useAtom(linksAtom);
   const [notMobile] = useMediaQuery('(min-width: 800px)');
   const { colorMode } = useColorMode();
   const toast = useToast();
@@ -43,7 +44,7 @@ export default function ManageLinks({ json }: Props) {
   );
   const { isLoading, data, hasError, uploadJsonFile } = useUploadJsonFile({client: client});
 
-  const setLinks = async (index: number, title: string, url: string, image: string, content: string, styles: Styles) => {
+  const setEditedLinks = async (index: number, title: string, url: string, image: string, content: string, styles: Styles) => {
     let __content = content;
     if(content.length > 300){
       toast({
@@ -89,12 +90,26 @@ export default function ManageLinks({ json }: Props) {
           }
     );
     setLinksArray(_newLinksArray);
+    const _links = setOrderInCustomLinks(_newLinksArray)
+    setLinks(_links);
   };
 
-  const removeLink = (index:number) => {
-    let _newLinksArray = arrayRemove(linksArray, index);
-    // console.log(_newLinksArray);
-    setLinksArray(_newLinksArray);
+  const removeLink = (index: number) => {
+    // Remove the link at the given index
+    const _newLinksArray = arrayRemove(linksArray, index);
+  
+    // Update the styles.order property for the remaining items
+    const updatedLinksArray = _newLinksArray.map((link: CustomLink, idx : number) => ({
+      ...link,
+      styles: {
+        ...(link.styles || {}),
+        order: idx, // Set the new order based on the updated index
+      },
+    }));
+  
+    // Set the updated links array
+    setLinksArray(updatedLinksArray);
+    setLinks(updatedLinksArray);
   };
 
   // @ts-ignore: Unreachable code error
@@ -105,7 +120,6 @@ export default function ManageLinks({ json }: Props) {
   );
 
   useEffect(() => {
-
     let _links: CustomLink[] = [];
     if (json?.links) {
       json?.links.map((link: CustomLink) => {
@@ -122,23 +136,39 @@ export default function ManageLinks({ json }: Props) {
 
     if(_links.length > 0){
     // @ts-ignore: Unreachable code error
-    setLinksArray(_links);
+    setLinksArray(setOrderInCustomLinks(_links));
+    setLinks(setOrderInCustomLinks(_links));
     }
   }, [json.links]);
 
   // @ts-ignore: Unreachable code error
   const onSortEnd = ({ oldIndex, newIndex }) => {
-    setLinksArray(arrayMoveImmutable(linksArray, oldIndex, newIndex));
+    // Reorder the array using arrayMoveImmutable
+    const newLinksArray = arrayMoveImmutable(links, oldIndex, newIndex);
+  
+    // Update the styles.order property to reflect the new order
+    const updatedLinksArray = newLinksArray.map((link, index) => ({
+      ...link,
+      styles: {
+        ...(link.styles || {}),
+        order: index, // Set the new order based on the index
+      },
+    }));
+  
+    // Set the reordered and updated links array
+    setLinksArray(updatedLinksArray);
+    setLinks(updatedLinksArray);
   };
 
   return (
     <>
-      {linksArray.length > 0 && <Accordion
+      {links && <Accordion
         allowToggle
         allowMultiple={false}
         borderRadius={10}
         minWidth={'100%'}
         size="lg"
+        key={'links-box-'+links.length}
         backgroundColor={colorMode === 'dark' ? 'whiteAlpha.100' : 'blackAlpha.100'}
         display={'flex'}
         className="links">
@@ -162,7 +192,7 @@ export default function ManageLinks({ json }: Props) {
 
               <SortableCon onSortEnd={onSortEnd} useDragHandle>
                 <>
-                  {linksArray.map((item, index) => (
+                  {links.map((item, index) => (
                     <SortableItem key={`item-${item.title}-${index}`} index={index}>
                       <>
                         <ManageLink
@@ -182,7 +212,7 @@ export default function ManageLinks({ json }: Props) {
                           content={item.content}
                           styles={item.styles}
                           ind={index}
-                          setUrl={setLinks}
+                          setUrl={setEditedLinks}
                           removeUrl={removeLink}
                         />
                       </>

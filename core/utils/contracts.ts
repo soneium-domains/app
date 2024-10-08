@@ -1,6 +1,5 @@
 import { defineChain, getContract, readContract } from "thirdweb";
 import { client, minato } from "components/walletConnect";
-//import ETHRegistrarControllerAbi from 'abi/ETHRegistrarController.json';
 
 export const ETHRegistrarController = getContract({
   client: client,

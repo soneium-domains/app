@@ -17,7 +17,7 @@ export const PreviewSlider = () => {
         loop
         grabCursor
         effect={"flip"}
-        autoplay={{ delay: 3000 }}
+        autoplay={{ delay: 2500 }}
         direction={"vertical"}
         modules={[EffectFlip, Autoplay]}
         slidesPerView={1}
